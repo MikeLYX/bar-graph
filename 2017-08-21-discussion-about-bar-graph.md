@@ -225,7 +225,7 @@ description: "这篇文章的起因是源于COS论坛中的下图，该图引起
 
 10. Alboukadel Kassambara (2017). ggpubr: 'ggplot2' Based Publication Ready Plots. R package version 0.1.4. https://CRAN.R-project.org/package=ggpubr
 
+11. <https://datascienceplus.com/building-barplots-with-error-bars/>
 
-
-
+12. <http://gnuplot.sourceforge.net/demo/histograms2.html>
 
