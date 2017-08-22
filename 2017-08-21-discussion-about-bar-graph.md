@@ -201,3 +201,31 @@ description: "这篇文章的起因是源于COS论坛中的下图，该图引起
 条形图的应用一共有三原则：有效、美观、简洁；条形图的颜色则有两要求：跨度适中、图形美观。条形图类型的选择会受到横纵坐标的限制，颜色则是为条形图“锦上添花”的。
 
 但大多数情况下，正立条形图和横躺条形图都是可以使用的，只有在某些特定情况下，二者才会有优劣，点图亦是如此；相比之下，分类条形图和堆积条形图则不然，在类型特别多的情形下，分类条形图的确要比堆积条形图好用的多，但如果传递的信息太多或者分类层数过多，使用复合条形图也是不错的选择；而立方条形图的颜色要比二维条形图颜色有更多的发挥空间，不过由于大部分横坐标的连续性，可能这种空间很多都发挥在了渐变色上面。
+
+# 参考文献
+
+1. R Core Team (2017). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria.
+  URL https://www.R-project.org/.
+
+2. Karline Soetaert (2016). plot3D: Plotting Multi-Dimensional Data. R package version 1.1. https://CRAN.R-project.org/package=plot3D
+
+3. Thomas Rahlf (2017). Data Visualisation with R – 100 Examples, Springer. eBook ISBN: 978-3-319-49751-8, Hardcover ISBN: 978-3-319-49750-1.
+
+4. <http://gnuplot.sourceforge.net/demo/histograms.html>
+
+5. Hadley Wickham (2009). ggplot2: Elegant Graphics for Data Analysis, Springer-Verlag New York. ISBN: 978-0-387-98140-6. URL http://ggplot2.org
+
+6. Daniel Lüdecke (2017). sjPlot: Data Visualization for Statistics in Social Science. R package version 2.3.2. https://CRAN.R-project.org/package=sjPlot
+
+7. Daniel Lüdecke (2017). sjmisc: Miscellaneous Data Management Tools. R package version 2.6.0. https://CRAN.R-project.org/package=sjmisc 
+
+8. Paulo J. Ribeiro Jr and Peter J. Diggle (2016). geoR: Analysis of Geostatistical Data. R package version 1.7-5.2. https://CRAN.R-project.org/package=geoR
+
+9. Simon Garnier (2017). viridis: Default Color Maps from 'matplotlib'. R package version 0.4.0. https://CRAN.R-project.org/package=viridis
+
+10. Alboukadel Kassambara (2017). ggpubr: 'ggplot2' Based Publication Ready Plots. R package version 0.1.4. https://CRAN.R-project.org/package=ggpubr
+
+
+
+
+
