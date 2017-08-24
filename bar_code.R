@@ -170,8 +170,36 @@ text(y = barCenters, x = par("usr")[3],
 axis(1, labels = seq(0,9,by=1), at = seq(0,9,by=1),  las = 1 , col = "gray")
 
 
+### Gambia儿童疟疾
 
+library(sjPlot)
+library(sjmisc)
+library(ggplot2)
+# theme_set(theme_bw())
 
+data(gambia,package="geoR")
+
+# sjp.grpfrq(gambia$pos, gambia$treated, geom.colors = "Set1")
+
+dat1 <- subset(gambia,netuse==0) # 0 没有使用蚊帐
+dat1$Index <- rep(0,dim(dat1)[1])
+dat2 <- subset(gambia,netuse==1 & treated == 0)  # 1
+dat2$Index <- rep(1,dim(dat2)[1])
+dat3 <- subset(gambia,netuse==1 & treated == 1)  # 2 
+dat3$Index <- rep(2,dim(dat3)[1])
+mydata <- rbind(dat1,dat2,dat3)
+
+sjp.setTheme(theme.font="Times",
+			 geom.outline.color = "white",
+			 axis.linecolor = "white", 
+             base = theme_classic())
+
+pdf(file="bed_net.pdf",width = 6,height = 5.25)
+sjp.grpfrq(	mydata$Index,mydata$pos,  geom.colors = "Set1",
+			axis.titles="Childhood malaria in the Gambia",
+			axis.labels= c("net not use","net not treated","net treated"),
+			legend.title="RDT")
+dev.off()
 
 
 
