@@ -78,6 +78,28 @@ with(myData,{
 dev.off()
 
 # 图6
+packages <- readRDS(file = "packages.rds")
+packages <- as.data.frame(packages,stringsAsFactors = FALSE)
+
+maintainer <- gsub("<([^<>]*)>","",packages$Maintainer)
+maintainer <- gsub("(^\\s*)|(\\s*$)|(\\\")|(\\\')|(')","",maintainer)
+
+top_pkgs_dev <- sort(table(maintainer),decreasing = TRUE)
+dat1 <- as.data.frame(top_pkgs_dev[top_pkgs_dev > 10])
+dat1 <- dat1[dat1$maintainer != "ORPHANED",] # top 53 开发者 pkg >10 
+
+library(ggplot2)
+ggplot(dat1,aes(x = Freq, y = maintainer )) +  
+  geom_segment(aes(xend = 0, yend = maintainer ),colour = "grey50" )+
+  geom_point(size=2,colour = "red") +
+  theme_bw() +
+  theme(panel.grid.major.y = element_blank())+
+  xlab(" # of Packages ") +
+  ylab(" Developer ") +
+  labs(title= " Top 53 developers ",
+       caption = "Data source: https://mran.microsoft.com/snapshot/2017-07-15/web/packages/packages.rds") 
+
+# 图7
 data(NCI60,package ="ISLR") # 加载数据
 dat <- as.data.frame(table(NCI60$labs))
 order_dat <- dat[order(dat$Freq,decreasing = TRUE),]
@@ -167,6 +189,23 @@ barplot(colMeans(AirPassengers2),col = "lightblue",
 # 图18
 
 # 图19
+dat2 <- as.data.frame(sort(table(table(maintainer)),decreasing = TRUE))
+dat2 <- rbind(head(dat2,10),data.frame(Var1 = factor(">10"),Freq= 53))
+dat2$Var1 <- as.factor(dat2$Var1)
+dat2$Freq <- as.numeric(dat2$Freq)	   
+	      
+library(scales)  
+ggplot(dat2,aes(x = reorder(Var1,Freq),y = Freq)) + 
+  geom_bar(stat="identity",width = 0.5) +
+  annotation_logticks(sides = "l") + 
+  scale_y_log10(breaks = trans_breaks("log10",function(x) 10^x),
+		labels = trans_format("log10",math_format(10^.x))) +  
+  geom_text( aes(label = Freq),vjust = -0.2,colour = "black") +			
+  theme_gdocs() +
+  theme(panel.grid.major.x = element_blank())+
+  xlab(" # of Packages ") +
+  ylab(" # of Developers ") 	   
+	   
 
 # 图20
 
