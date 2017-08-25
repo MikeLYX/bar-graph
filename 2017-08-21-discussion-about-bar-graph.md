@@ -42,7 +42,7 @@ slug: discussion_about_bar_graph
 
 如果坐标虽然很多，但是这些坐标是连续性的数字的话，我们依旧可以把它竖过来放，因为连续性坐标可以省略其中的大部分坐标，不用明确标出，如下图4：
 
-![图4：竖立条形图](https://user-images.githubusercontent.com/12031874/28908283-6493aff6-7855-11e7-97df-34f13da0d34d.png)
+![图4：竖立条形图](https://user-images.githubusercontent.com/12031874/29704567-f2af53fe-89ac-11e7-896a-53232349181a.png)
 
 **图4：竖立条形图**
 
