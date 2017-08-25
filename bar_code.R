@@ -51,7 +51,7 @@ axis(2, labels = seq(0,9,by=1), at = seq(0,9,by=1),  las = 1 , col = "gray")
 
 
 
-# 图5  点图  mtcars
+# 图5  点图  mtcars 
 mtcars4 <- mtcars[mtcars$cyl == 4,]
 mtcars6 <- mtcars[mtcars$cyl == 6,]
 mtcars8 <- mtcars[mtcars$cyl == 8,]
@@ -187,6 +187,14 @@ barplot(colMeans(AirPassengers2),col = "lightblue",
 # 图17 同图1
 
 # 图18
+library(ggplot2)
+data <- data.frame(type = c("线路","电动机","变压器","发电机"), 
+                   price = c(25, 30, 45, 60), num = c(50, 35, 20, 10))
+ggplot(data,aes(reorder(type, price), price, fill = num[order(num)]))+
+  geom_col()+
+  xlab("类型")+
+  ylab("价格")+
+  scale_fill_continuous(name="数量")
 
 # 图19
 dat2 <- as.data.frame(sort(table(table(maintainer)),decreasing = TRUE))
