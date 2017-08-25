@@ -56,14 +56,12 @@ len <- diff(c(0,which(x < delta),n+1))-1
 ylim <- seq( 0, 1800, by = 200)
 xlim <- seq( 0, 100, by = 10)
 par(mar=c(2,2,.5,.5))
-hist(len[len < 101], col="LightSteelBlue3",
+hist(len[len < 101], col="lightblue",
 	 breaks = -1:100+0.5,
 	 border = "white", axes = FALSE, ann = FALSE)
 axis( 1, labels = xlim, at = xlim, las = 1) # x 轴
-axis( 2, labels = ylim, at = ylim, las = 1) # y 轴
+axis( 2, labels = ylim, at = ylim, las = 0) # y 轴
 box(col="gray")
-
-
 
 # 图5  点图  mtcars 
 mtcars4 <- mtcars[mtcars$cyl == 4,]
