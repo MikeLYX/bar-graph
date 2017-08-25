@@ -340,10 +340,11 @@ hist3D(x, y, z, xlab = "Year", ylab = "Month", zlab = "# of Airline Passengers",
 dev.off()
 
 # 图22
-# 图23  Matlab 代码来自 https://cn.mathworks.com/examples/matlab/community/19570-bar_plot_3d?s_tid=srchtitle
+		
+		
+# 图23  Matlab 数据和代码来自 https://cn.mathworks.com/examples/matlab/community/19570-bar_plot_3d?s_tid=srchtitle
 % Load monthly temperature data
 load MonthlyTemps temperatures months years
-
 % Create the 3D bar chart
 figure
 bar3(temperatures)
