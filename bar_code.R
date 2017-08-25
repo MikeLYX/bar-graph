@@ -47,7 +47,21 @@ text(x = barCenters, y = par("usr")[3]-.2, srt = 45,
      adj = 1, labels = names(myData), xpd = TRUE)
 axis(2, labels = seq(0,9,by=1), at = seq(0,9,by=1),  las = 1 , col = "gray") 
 
-# 图4
+# 图4 参考来自 https://cosx.org/2017/05/random-number-generation/
+set.seed(1234)
+n <- 2^24
+x <- runif(n,0,1)
+delta <- 0.01
+len <- diff(c(0,which(x < delta),n+1))-1
+ylim <- seq( 0, 1800, by = 200)
+xlim <- seq( 0, 100, by = 10)
+par(mar=c(2,2,.5,.5))
+hist(len[len < 101], col="LightSteelBlue3",
+	 breaks = -1:100+0.5,
+	 border = "white", axes = FALSE, ann = FALSE)
+axis( 1, labels = xlim, at = xlim, las = 1) # x 轴
+axis( 2, labels = ylim, at = ylim, las = 1) # y 轴
+box(col="gray")
 
 
 
