@@ -56,7 +56,7 @@ slug: discussion_about_bar_graph
 
 这张点图要是把它竖过来放实在太恐怖了...我是没有勇气把它的反例放上来的。由此来说，在坐标特别多的时候，点图要更好用一些。下面这张点图也是如此：
 
-![图6：CRAN上发布R包最多的53人](https://user-images.githubusercontent.com/12031874/29740032-fe177914-8a7f-11e7-850a-14619ad9411b.png)
+![图6：CRAN上发布R包最多的53人](https://user-images.githubusercontent.com/12031874/29740087-1378d40a-8a81-11e7-949f-3be5956df129.png)
 
 **图6：CRAN上发布R包最多的53人**
 
