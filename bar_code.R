@@ -134,7 +134,6 @@ par(op)
 # 图8 同图2
 
 # 图9  Gambia儿童疟疾
-
 library(sjPlot)
 library(sjmisc)
 library(ggplot2)
@@ -148,15 +147,17 @@ dat3 <- subset(gambia,netuse==1 & treated == 1)  # 2
 dat3$Index <- rep(2,dim(dat3)[1])
 mydata <- rbind(dat1,dat2,dat3)
 
-sjp.setTheme(theme.font="Times",geom.outline.color = "white",
+sjp.setTheme(geom.outline.color = "white",
 	     axis.linecolor = "white", base = theme_classic())
 
 pdf(file="bed_net.pdf",width = 6,height = 5.25)
-sjp.grpfrq(	mydata$Index,mydata$pos,  geom.colors = "Set1",
-			axis.titles="Childhood malaria in the Gambia",
-			axis.labels= c("net not use","net not treated","net treated"),
-			legend.title="RDT")
+sjp.grpfrq( mydata$Index,mydata$pos,  geom.colors = c("lightblue","lightblue4"),
+	    axis.titles="Childhood malaria in the Gambia",
+	    axis.labels= c("net not use","net not treated","net treated"),
+	    legend.title="RDT")
 dev.off()
+
+
 
 # 图10
 barplot(t(VADeaths), col = rev(paste0("lightblue",seq(4))),
