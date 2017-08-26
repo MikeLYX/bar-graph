@@ -97,19 +97,21 @@ maintainer <- gsub("<([^<>]*)>","",packages$Maintainer)
 maintainer <- gsub("(^\\s*)|(\\s*$)|(\\\")|(\\\')|(')","",maintainer)
 
 top_pkgs_dev <- sort(table(maintainer),decreasing = TRUE)
-dat1 <- as.data.frame(top_pkgs_dev[top_pkgs_dev > 10])
-dat1 <- dat1[dat1$maintainer != "ORPHANED",] # top 53 开发者 pkg >10 
-
-library(ggplot2)
-ggplot(dat1,aes(x = Freq, y = maintainer )) +  
-  geom_segment(aes(xend = 0, yend = maintainer ),colour = "grey50" )+
-  geom_point(size=2,colour = "red") +
-  theme_bw() +
-  theme(panel.grid.major.y = element_blank())+
-  xlab(" # of Packages ") +
-  ylab(" Developer ") +
-  labs(title= " Top 53 developers ",
-       caption = "Data source: https://mran.microsoft.com/snapshot/2017-07-15/web/packages/packages.rds") 
+dat1 <- as.data.frame(top_pkgs_dev[top_pkgs_dev > 11])
+dat1 <- dat1[dat1$maintainer != "ORPHANED",] 
+pdf(file = "dotplot.pdf", width = 6, height = 8)
+op <- par(mar=c(4,9,0,1))
+plot(c(0,80),c(0,47),type= "n",axes = FALSE,xlab = "# of Packages",ylab ="")
+barCenters <- barplot(dat1[,2],col = "lightblue",axes = FALSE,
+			space = 4.5, width = .2,
+			axisnames=FALSE,horiz=TRUE,border ="white", add = TRUE)	
+points(y = barCenters, x = dat1[,2], pch= 19, 
+	cex = 1.5, col = "lightblue4")  # 加点	
+text(y = barCenters, x = dat1[,2], labels = dat1[,2],cex = .5,col = "white") # 加数字		
+text(y = barCenters, x = par("usr")[3],
+     adj = 1, labels = dat1[,1], xpd = TRUE)
+axis(1, labels = seq(0,80,by = 10), at = seq(0,80, by=10),  las = 1 , col = "gray")
+dev.off()
 
 # 图7
 data(NCI60,package ="ISLR") # 加载数据
@@ -213,15 +215,17 @@ dat2 <- as.data.frame(sort(table(table(maintainer)),decreasing = TRUE))
 dat2 <- rbind(head(dat2,10),data.frame(Var1 = factor(">10"),Freq= 53))
 dat2$Var1 <- as.factor(dat2$Var1)
 dat2$Freq <- as.numeric(dat2$Freq)	   
-	      
+	    
+library(ggplot2)
 library(scales)  
+library(ggthemes) 
 ggplot(dat2,aes(x = reorder(Var1,Freq),y = Freq)) + 
-  geom_bar(stat="identity",width = 0.5) +
+  geom_bar(stat="identity",width = 0.5,fill = "lightblue") +
   annotation_logticks(sides = "l") + 
   scale_y_log10(breaks = trans_breaks("log10",function(x) 10^x),
 		labels = trans_format("log10",math_format(10^.x))) +  
   geom_text( aes(label = Freq),vjust = -0.2,colour = "black") +			
-  theme_gdocs() +
+  theme_few() +
   theme(panel.grid.major.x = element_blank())+
   xlab(" # of Packages ") +
   ylab(" # of Developers ") 	   
