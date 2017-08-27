@@ -210,7 +210,7 @@ slug: discussion_about_bar_graph
 
 3. Thomas Rahlf (2017). Data Visualisation with R – 100 Examples, Springer. eBook ISBN: 978-3-319-49751-8, Hardcover ISBN: 978-3-319-49750-1.
 
-4. <http://gnuplot.sourceforge.net/demo/histograms.html>
+4. Jeffrey B. Arnold (2017). ggthemes: Extra Themes, Scales and Geoms for 'ggplot2'. R package version 3.4.0. https://CRAN.R-project.org/package=ggthemes
 
 5. Hadley Wickham (2009). ggplot2: Elegant Graphics for Data Analysis, Springer-Verlag New York. ISBN: 978-0-387-98140-6. URL http://ggplot2.org
 
@@ -227,4 +227,12 @@ slug: discussion_about_bar_graph
 11. <https://datascienceplus.com/building-barplots-with-error-bars/>
 
 12. <http://gnuplot.sourceforge.net/demo/histograms2.html>
+
+13. <http://gnuplot.sourceforge.net/demo/histograms.html>
+
+14. Hadley Wickham (2016). scales: Scale Functions for Visualization. R package version 0.4.1. https://CRAN.R-project.org/package=scales
+
+15. Daniel Adler, Duncan Murdoch and others (2017). rgl: 3D Visualization Using OpenGL. R package version 0.98.1. https://CRAN.R-project.org/package=rgl
+
+16. Bhaskar Karambelkar (2016). colormap: Color Palettes using Colormaps Node Module. R package version 0.1.4. https://CRAN.R-project.org/package=colormap
 
