@@ -167,7 +167,8 @@ barplot(t(VADeaths), col = rev(paste0("lightblue",seq(4))),
 				   box.col = "white", pt.cex = 2) )		
 axis(2, labels = seq(0,240,by=40), at = seq(0,240,by=40),  las = 1 , col = "gray")		
 		
-# 图11 这是gnuplot软件的绘图代码
+# 图11 这是gnuplot软件的绘图代码 
+# 图11 12 14 15 代码来自 http://gnuplot.sourceforge.net/demo/histograms2.html 和 http://gnuplot.sourceforge.net/demo/histograms.html
 # set terminal pngcairo  transparent enhanced font "arial,10" fontscale 1.0 size 600, 400 
 # set output 'histograms.4.png'
 set bar 1.000000 front
