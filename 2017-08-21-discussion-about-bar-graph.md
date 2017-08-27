@@ -118,11 +118,11 @@ slug: discussion_about_bar_graph
 
 复合条形图所传递的信息要多于其他的图形，上面这张图便是既展现了同一人群中录取和拒绝的区别，也展现了同一系中男女的区别。同样，内容较多时使用复合条形图要好于上述单独的分类条形图或者堆积条形图。比如下面两张图：
 
-![图14：美国每十年从欧洲移民情况3](http://gnuplot.sourceforge.net/demo/histograms.7.png)
+![图14：美国每十年从欧洲移民情况3](https://user-images.githubusercontent.com/12031874/29747239-77cf9c78-8b25-11e7-8c6c-11b80f8ed146.png)
 
 **图14：美国每十年从欧洲移民情况3**
 
-![图15：美国每十年从欧洲移民情况4](http://gnuplot.sourceforge.net/demo/histograms.8.png)
+![图15：美国每十年从欧洲移民情况4](https://user-images.githubusercontent.com/12031874/29747240-7bb48e16-8b25-11e7-989d-f847501beda1.png)
 
 **图15：美国每十年从欧洲移民情况4**
 
