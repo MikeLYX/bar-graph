@@ -586,8 +586,31 @@ hist3D(x, y, z, xlab = "Year", ylab = "Month", zlab = "# of Airline Passengers",
 	ticktype = "detailed",space = .3, bty = "b2",facets = FALSE )
 dev.off()
 
-# 图25
-		
+# 图25  代码来自 https://cn.mathworks.com/matlabcentral/profile/authors/4199206-johannes-schmitz
+function [] = plot_bar3_colorheights( x, y, Z )
+%PLOT_BAR3_COLORHEIGHTS bar3 plot with color coded heights
+% x, y : vector of centers of bins
+%    Z : matrix of bin heights
+
+b = bar3(y,Z,1)
+
+for k = 1:length(b)
+    zdata = b(k).ZData;
+    b(k).CData = zdata;
+    b(k).FaceColor = 'interp';
+end
+
+axis tight
+
+Xdat=get(b,'XData');
+for ii=1:length(Xdat)
+    Xdat{ii}=(Xdat{ii}-0.5)*(x(2)-x(1));
+    set(b(ii),'XData',Xdat{ii});
+end
+
+end
+ % 上面这段代码打包成函数 plot_bar3_colorheights		
+plot_bar3_colorheights(1:1:12,1900:10:2000,temperatures)		
 		
 # 图26  Matlab 数据和代码来自 https://cn.mathworks.com/examples/matlab/community/19570-bar_plot_3d?s_tid=srchtitle
 % Load monthly temperature data
