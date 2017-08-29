@@ -401,8 +401,37 @@ i = 24
 ## Last datafile plotted: "immigration.dat"
 plot newhistogram "Northern Europe", 'immigration.dat' using "Sweden":xtic(1) t col, '' u "Denmark" t col, '' u "Norway" t col, newhistogram "Southern Europe", '' u "Greece":xtic(1) t col, '' u "Romania" t col, '' u "Yugoslavia" t col, newhistogram "British Isles", '' u "Ireland":xtic(1) t col, '' u "United_Kingdom" t col
 
+# 图16：复合条形图的另类
+pdf(file = "UCBAdmissions2.pdf",width=8)  # 马赛克图 强调 各系之间的对比
+op <- par(mar = c(2,2,2.5,0))
+# mosaicplot(UCBAdmissions, col = "lightblue", border = "white" )
+mosaicplot(~Dept + Admit + Gender,data = UCBAdmissions, col = "lightblue", border = "white" )
+par(op)
+dev.off()
 
-# 图16 国际航班乘客示意图	
+# 图17：复合堆积条形图	
+pdf(file = "stackplot.pdf")
+layout(mat = matrix(seq(2), ncol = 2, byrow = TRUE))	
+plot(c(0,2),c(0,120), axes = FALSE, type = "n", xlab = "",ylab = "")		
+barplot(HairEyeColor[,,2],width = .5,col = rev(paste0("lightblue",seq(4))),
+        border = "white",main = "Female",xlab = "Eye",add = TRUE)
+plot(c(0,2),c(0,120), axes = FALSE, type = "n", xlab = "",ylab = "")	
+barplot(HairEyeColor[,,1],width = .5,col = rev(paste0("lightblue",seq(4))), axes = FALSE,
+        border = "white",main = "Male",xlab = "Eye",add = TRUE)			
+legend(x= 1.2,y=120, legend = c("Black", "Brown", "Red", "Blond"),title = "Hair",
+       col = rev(paste0("lightblue",seq(4))),pch = 15,
+       border = "white",box.col = "white", pt.cex = 3,cex = 1)	
+dev.off()
+
+# 图18：马赛克图：用马赛克图代替复杂复合条形图  矩阵树图
+pdf(file = "stackmosaicplot.pdf")
+op <- par(mar = c(2,2,2.5,0))
+mosaicplot(HairEyeColor, col = "indianred", border = "white") 
+# 数据为多维数组"lightgray" "lightblue" indianred
+par(op)
+dev.off()
+
+# 图19 国际航班乘客示意图	
 
 AirPassengers2 <- matrix(AirPassengers, ncol = 12, byrow = TRUE,
             dimnames = list( 1948 + seq(12),
@@ -412,9 +441,9 @@ AirPassengers2 <- matrix(AirPassengers, ncol = 12, byrow = TRUE,
 barplot(colMeans(AirPassengers2),col = "lightblue",
 		border = "white",main = "Monthly Average Airline Passenger Numbers 1949-1960")
 		
-# 图17 同图1
+# 图20 同图1
 
-# 图18
+# 图21
 library(ggplot2)
 data <- data.frame(type = c("线路","电动机","变压器","发电机"), 
                    price = c(25, 30, 45, 60), num = c(50, 35, 20, 10))
@@ -424,7 +453,7 @@ ggplot(data,aes(reorder(type, price), price, fill = num[order(num)]))+
   ylab("价格")+
   scale_fill_continuous(name="数量")
 
-# 图19
+# 图22
 dat2 <- as.data.frame(sort(table(table(maintainer)),decreasing = TRUE))
 dat2 <- rbind(head(dat2,10),data.frame(Var1 = factor(">10"),Freq= 53))
 dat2$Var1 <- as.factor(dat2$Var1)
@@ -445,7 +474,7 @@ ggplot(dat2,aes(x = reorder(Var1,Freq),y = Freq)) +
   ylab(" # of Developers ") 	   
 	   
 
-# 图20 代码来自 https://github.com/cpwardell/3dbarplot
+# 图23 代码来自 https://github.com/cpwardell/3dbarplot
 library(rgl)
 ## Draws a single "column" or "stack".
 ## X and Y coordinates determine the area of the column
@@ -538,7 +567,7 @@ names(counts)=colnames(rawdata)
 context3d(counts,alpha=0.4)
 ########################################
 
-# 图21 每月航班人数的变化						
+# 图24 每月航班人数的变化						
 x <- 1948 + seq(12)
 y <- seq(from = 12 ,to = 1, length.out = 12)
 z <- matrix(AirPassengers, ncol = 12, byrow = TRUE,
@@ -557,10 +586,10 @@ hist3D(x, y, z, xlab = "Year", ylab = "Month", zlab = "# of Airline Passengers",
 	ticktype = "detailed",space = .3, bty = "b2",facets = FALSE )
 dev.off()
 
-# 图22
+# 图25
 		
 		
-# 图23  Matlab 数据和代码来自 https://cn.mathworks.com/examples/matlab/community/19570-bar_plot_3d?s_tid=srchtitle
+# 图26  Matlab 数据和代码来自 https://cn.mathworks.com/examples/matlab/community/19570-bar_plot_3d?s_tid=srchtitle
 % Load monthly temperature data
 load MonthlyTemps temperatures months years
 % Create the 3D bar chart
@@ -578,44 +607,31 @@ zlabel('Temperature')
 set(gca, 'XTickLabel', months)
 set(gca, 'YTickLabel', years)
 
+# 图27和28：三维柱形图转平面格点图（又称棋盘图）
+dat <- as.data.frame( cbind(rep( 1948 + seq(12), each = 12), rep(seq(12),12), AirPassengers) )  
+colnames(dat) <- c("year","month","passengers")
+library(ggplot2)
 
+pdf(file="AirlinePassenger.pdf")
+ggplot(data = dat, aes(as.factor(year), as.factor(month))) + 
+  geom_point(pch = 15,size = 8 ,aes(colour = passengers )) +
+  scale_colour_distiller(palette = "Spectral") +
+  labs(x = "Year",y = "Month",colour = "Passengers") +
+  theme_bw()
 
+library(colormap)	
+ggplot(data = dat, aes(as.factor(year), as.factor(month))) + 
+  geom_point(pch = 15,size = 8 ,aes(color = passengers )) +
+  scale_color_colormap(colormap = colormaps$viridis) +
+  labs(x = "Year",y = "Month",colour = "Passengers") +
+  theme_bw()	
+dev.off()
 
-
+# 附：
 # 图10 的点图画法
 dotchart(VADeaths, main = "Death Rates in Virginia - 1940",bg="lightblue",
 			pch =21,color = "lightblue",lcolor = "gray",pt.cex=2)
-									
-# 复合堆积条形图的反例	
-pdf(file = "stackplot.pdf")
-layout(mat = matrix(seq(2), ncol = 2, byrow = TRUE))	
-plot(c(0,2),c(0,120), axes = FALSE, type = "n", xlab = "",ylab = "")		
-barplot(HairEyeColor[,,2],width = .5,col = rev(paste0("lightblue",seq(4))),
-		border = "white",main = "Female",xlab = "Eye",add = TRUE)
-plot(c(0,2),c(0,120), axes = FALSE, type = "n", xlab = "",ylab = "")	
-barplot(HairEyeColor[,,1],width = .5,col = rev(paste0("lightblue",seq(4))), axes = FALSE,
-		border = "white",main = "Male",xlab = "Eye",add = TRUE)			
-legend(x= 1.2,y=120, legend = c("Black", "Brown", "Red", "Blond"),title = "Hair",
-		col = rev(paste0("lightblue",seq(4))),pch = 15,
-		border = "white",box.col = "white", pt.cex = 3,cex = 1)	
-dev.off()
 
-# 用马赛克图代替复杂复合条形图  矩阵树图
-pdf(file = "stackmosaicplot.pdf")
-op <- par(mar = c(2,2,2.5,0))
-mosaicplot(HairEyeColor, col = "indianred", border = "white") 
-# 数据为多维数组"lightgray" "lightblue" indianred
-par(op)
-dev.off()
-
-# 复合条形图的另类
-pdf(file = "UCBAdmissions2.pdf",width=8)  # 马赛克图 强调 各系之间的对比
-op <- par(mar = c(2,2,2.5,0))
-# mosaicplot(UCBAdmissions, col = "lightblue", border = "white" )
-mosaicplot(~Dept + Admit + Gender,data = UCBAdmissions, col = "lightblue", border = "white" )
-par(op)
-dev.off()
-			
 # 图5 
 library(ggpubr)
 data("mtcars")
@@ -640,30 +656,3 @@ ggdotchart(dfm, x = "name", y = "mpg",
            ggtheme = theme_pubr()                        # ggplot2 theme
            )						
 						
-
-
-# 三维柱形图转平面格点图（又称棋盘图）
-dat <- as.data.frame( cbind(rep( 1948 + seq(12), each = 12), rep(seq(12),12), AirPassengers) )  
-colnames(dat) <- c("year","month","passengers")
-library(ggplot2)
-
-pdf(file="AirlinePassenger.pdf")
-ggplot(data = dat, aes(as.factor(year), as.factor(month))) + 
-    geom_point(pch = 15,size = 8 ,aes(colour = passengers )) +
-	scale_colour_distiller(palette = "Spectral") +
-	labs(x = "Year",y = "Month",colour = "Passengers") +
-	theme_bw()
-	
-library(colormap)	
-ggplot(data = dat, aes(as.factor(year), as.factor(month))) + 
-    geom_point(pch = 15,size = 8 ,aes(color = passengers )) +
-	scale_color_colormap(colormap = colormaps$viridis) +
-	labs(x = "Year",y = "Month",colour = "Passengers") +
-	theme_bw()	
-dev.off()
-
-
-
-
-
-		
