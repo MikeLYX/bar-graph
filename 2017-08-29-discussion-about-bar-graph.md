@@ -133,13 +133,7 @@ slug: discussion_about_bar_graph
 
 复合堆积条形图的效果也可以用马赛克图来呈现，如图16所示：
 
-```{r eval = T, echo = F}
-op <- par(mar = c(2,2,2.5,0))
-# mosaicplot(UCBAdmissions, col = "lightblue", border = "white" )
-mosaicplot(~Dept + Admit + Gender,data = UCBAdmissions, col = "lightblue", border = "white" )
-par(op)
-```
-
+![图16：马赛克图示例](https://user-images.githubusercontent.com/12031874/29492195-2c1a2cfa-85a6-11e7-9c04-dbba83986442.png)
 <center>图16：马赛克图示例</center>
 
 总体来说，马赛克图中方块的大小在视觉上更容易识别，因此基于比例比较来说，马赛克图更有优势，但如果说硬要强调数值大小，那复合堆积条形图稍好。请大家根据下面的两幅图自行感受优劣：
