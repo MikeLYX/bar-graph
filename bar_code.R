@@ -642,8 +642,25 @@ ggdotchart(dfm, x = "name", y = "mpg",
 						
 
 
+# 三维柱形图转平面格点图（又称棋盘图）
+dat <- as.data.frame( cbind(rep( 1948 + seq(12), each = 12), rep(seq(12),12), AirPassengers) )  
+colnames(dat) <- c("year","month","passengers")
+library(ggplot2)
 
-
+pdf(file="AirlinePassenger.pdf")
+ggplot(data = dat, aes(as.factor(year), as.factor(month))) + 
+    geom_point(pch = 15,size = 8 ,aes(colour = passengers )) +
+	scale_colour_distiller(palette = "Spectral") +
+	labs(x = "Year",y = "Month",colour = "Passengers") +
+	theme_bw()
+	
+library(colormap)	
+ggplot(data = dat, aes(as.factor(year), as.factor(month))) + 
+    geom_point(pch = 15,size = 8 ,aes(color = passengers )) +
+	scale_color_colormap(colormap = colormaps$viridis) +
+	labs(x = "Year",y = "Month",colour = "Passengers") +
+	theme_bw()	
+dev.off()
 
 
 
