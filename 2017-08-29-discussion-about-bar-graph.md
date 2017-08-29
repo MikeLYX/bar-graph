@@ -1,6 +1,6 @@
 ---
 title: "漫谈条形图"
-date: '2017-08-28'
+date: '2017-08-29'
 author: "黄湘云 李宇轩"
 tags: ["条形图"]
 slug: discussion_about_bar_graph
