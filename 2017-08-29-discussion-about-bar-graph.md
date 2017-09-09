@@ -1,9 +1,11 @@
 ---
 title: "漫谈条形图"
-date: '2017-08-29'
-author: "黄湘云 李宇轩"
+date: '2017-09-09'
+author: 
+   - 黄湘云 
+   - 李宇轩
 tags: ["条形图"]
-slug: discussion_about_bar_graph
+slug: discussion-about-bar-graph
 ---
 
 这篇文章的起因是源于COS论坛中的下图，该图引起了热烈的讨论，具体的探讨细节[见此](https://d.cosx.org/d/417769)。
