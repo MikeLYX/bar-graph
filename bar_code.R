@@ -423,7 +423,7 @@ legend(x= 1.2,y=120, legend = c("Black", "Brown", "Red", "Blond"),title = "Hair"
        border = "white",box.col = "white", pt.cex = 3,cex = 1)	
 dev.off()
 
-# 图18：马赛克图：用马赛克图代替复杂复合条形图  矩阵树图
+# 图18：马赛克图：用马赛克图代替复杂复合条形图
 pdf(file = "stackmosaicplot.pdf")
 op <- par(mar = c(2,2,2.5,0))
 mosaicplot(HairEyeColor, col = "indianred", border = "white") 
