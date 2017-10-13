@@ -569,7 +569,7 @@ context3d(counts,alpha=0.4)
 
 # 图24 每月航班人数的变化						
 x <- 1948 + seq(12)
-y <- seq(from = 12 ,to = 1, length.out = 12)
+y <- seq(from = 1 ,to = 12, length.out = 12)
 z <- matrix(AirPassengers, ncol = 12, byrow = TRUE,
             dimnames = list( 1948 + seq(12),
                     c("Jan", "Feb", "Mar", "Apr","May", "Jun",
